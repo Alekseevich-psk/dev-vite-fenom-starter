@@ -1,5 +1,5 @@
 const appConfig = {
-    baseFormat: ['twig', 'scss'],
+    baseFormat: ['tpl', 'scss'],
     ts: true,
     pathFonts: {
         ttf: "public/fonts/ttf/",
@@ -9,6 +9,7 @@ const appConfig = {
     pathWget: "public/wget",
     sections: "src/sections",
     components: "src/components",
+    elements: "src/chunks",
 };
 
 export default appConfig;
