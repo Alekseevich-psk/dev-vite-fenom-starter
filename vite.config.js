@@ -36,18 +36,14 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
             data: 'src/data/**/*.json',
             root: 'src/',
         }),
-        postcss({
-            autoprefixer: {
-                overrideBrowserslist: ["last 6 versions", "Android >= 4"],
-            },
-        }),
+        postcss(),
     ];
 
     return {
         css: {
             preprocessorOptions: {
                 scss: {
-                    sourceMap: true,
+                    sourceMap: mode === 'development',
                 },
             },
         },
@@ -55,16 +51,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
             alias: {
                 "~": path.resolve(__dirname, "src"),
             },
-            extensions: [".ts", ".tsx", ".js", ".jsx", ".mjs"],
         },
-        server: {
-            watch: {
-                additionalPaths: (watcher) => {
-                    watcher.add("src/**");
-                },
-            },
-        },
-        base: "./",
         plugins: plugins,
         build: buildOptions,
     };
