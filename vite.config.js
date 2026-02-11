@@ -22,7 +22,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
             },
         },
         rollupOptions: {
-            input: ['src/scripts/scripts.ts', 'src/styles/styles.scss'],
+            input: ['/src/scripts/scripts.ts', '/src/styles/styles.scss'],
             output: {
                 entryFileNames: `js/[name].js`,
                 assetFileNames: `[ext]/[name].[ext]`,
@@ -37,6 +37,22 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
             root: 'src/',
         }),
         postcss(),
+        // замена путей background-image '/src/' -> '../src/'
+        {
+            name: 'rewrite-css-urls',
+            apply: 'build',
+            enforce: 'post',
+            generateBundle(_, bundles) {
+                if (mode === 'production') {
+                    for (const [fileName, bundle] of Object.entries(bundles)) {
+                        if (bundle.type === 'asset' && fileName.endsWith('.css')) {
+                            bundle.source = bundle.source.toString()
+                                .replace(/url\(['"]?\/([^'")]+)['"]?\)/g, 'url("../$1")');
+                        }
+                    }
+                }
+            }
+        }
     ];
 
     return {

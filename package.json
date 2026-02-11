@@ -24,14 +24,14 @@
     "devDependencies": {
         "@vituum/vite-plugin-postcss": "^1.1.0",
         "autoprefixer": "^10.4.24",
-        "fenom-js": "^1.0.10",
+        "fenom-js": "^1.0.12",
         "postcss": "^8.5.6",
         "sass": "^1.97.3",
         "terser": "^5.46.0",
         "ttf2woff": "^3.0.0",
         "ttf2woff2": "^6.0.1",
         "vite": "^6.4.1",
-        "vite-plugin-fenom": "^1.0.9",
+        "vite-plugin-fenom": "^1.0.12",
         "website-scraper": "^5.3.1",
         "yargs": "^17.7.2"
     }

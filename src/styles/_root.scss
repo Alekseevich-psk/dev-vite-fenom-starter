@@ -1,5 +1,7 @@
 @use "./base" as *;
 
-:root {
+:root {}
 
+div {
+    background-image: url('/src/test.svg');
 }
